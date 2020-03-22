@@ -11,7 +11,10 @@
 |
 */
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+/** @var Factory $factory */
+
+use Illuminate\Database\Eloquent\Factory;
+
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
@@ -20,5 +23,13 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+    ];
+});
+
+/** @var Factory $factory */
+$factory->define(App\Transaction::class, function (Faker\Generator $faker) {
+
+    return [
+        'description' => $faker->sentence(2),
     ];
 });
