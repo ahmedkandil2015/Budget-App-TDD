@@ -19,7 +19,8 @@ class ViewTransactionTest extends TestCase
     {
         $transaction = factory('App\Transaction')->create();
         $this->get('/transactions')
-            ->assertSee($transaction->description);
+            ->assertSee($transaction->description)
+            ->assertSee($transaction->category->name);
 
     }
 }
