@@ -31,5 +31,16 @@ $factory->define(App\Transaction::class, function (Faker\Generator $faker) {
 
     return [
         'description' => $faker->sentence(2),
+        'category_id' => function(){
+            return \factory(App\Category::class)->create()->id;
+        },
+    ];
+});
+
+/** @var Factory $factory */
+$factory->define(App\Category::class, function (Faker\Generator $faker) {
+
+    return [
+        'name' => $faker->word,
     ];
 });
