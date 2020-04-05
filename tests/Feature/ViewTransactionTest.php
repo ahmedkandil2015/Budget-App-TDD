@@ -31,8 +31,8 @@ class ViewTransactionTest extends TestCase
     public function testCanFilterTransactionsByCategory()
     {
         $category = factory('App\Category')->create();
-        $transactions=factory('App\Transactions')->create(['category_id'=>$category->id]);
-        $anotherTransactions=factory('App\Transactions')->create();
+        $transactions=factory('App\Transaction')->create(['category_id'=>$category->id]);
+        $anotherTransactions=factory('App\Transaction')->create();
 
         $this->get('transactions/'.$category->slug)
             ->assertSee($transactions->description)
