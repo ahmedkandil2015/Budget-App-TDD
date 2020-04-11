@@ -51,4 +51,17 @@ class CreateTransactionTest extends TestCase
 
 
     }
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
+    public function testCannotCreateTransactionsWithoutMount()
+    {
+        $transaction = make('App\Transaction',['amount'=>null]);
+        $this->withExceptionHandling()->post('/transactions',$transaction->toArray())
+             ->assertSessionHasErrors('amount');
+
+
+    }
 }

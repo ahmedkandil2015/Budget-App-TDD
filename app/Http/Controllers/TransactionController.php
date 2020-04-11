@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Http\Requests\CreateTransactionRequest;
 use App\Transaction;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -30,16 +31,11 @@ class TransactionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param CreateTransactionRequest $request
      * @return RedirectResponse|Redirector
      */
-    public function store(Request $request)
+    public function store(CreateTransactionRequest $request)
     {
-     $this->validate($request,[
-            'description'=>'required',
-            'category_id'=>'required',
-            'amount'=>'required'
-        ]);
 
         Transaction::create($request->all());
         return redirect('transactions');
