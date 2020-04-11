@@ -15,6 +15,19 @@ class ViewTransactionTest extends TestCase
      *
      * @return void
      */
+    public function testItAllowOnlyAuthenticatedUsers()
+    {
+          $this->signOut()
+              ->withExceptionHandling()
+              ->get('/transactions')
+              ->assertRedirect('/login');
+
+    }
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
     public function testICanDisplayAllTransactions()
     {
         $transaction=create('App\Transaction');

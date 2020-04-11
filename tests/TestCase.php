@@ -14,7 +14,8 @@ abstract class TestCase extends BaseTestCase
     protected function setUp ()
     {
         parent::setUp();
-        $this->disableExceptionHandling();
+        $user = create('App\User');
+        $this->signIn($user)->disableExceptionHandling();
     }
 
     protected function disableExceptionHandling ()
@@ -26,6 +27,18 @@ abstract class TestCase extends BaseTestCase
     protected function withExceptionHandling ()
     {
         app()->instance(ExceptionHandler::class, $this->oldExceptionHandler);
+        return $this;
+    }
+
+    protected function signIn($user)
+    {
+        $this->actingAs($user);
+        return $this;
+    }
+
+    protected function signOut()
+    {
+        $this->post('logout');
         return $this;
     }
 }
