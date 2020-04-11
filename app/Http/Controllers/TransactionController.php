@@ -36,7 +36,9 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
      $this->validate($request,[
-            'description'=>'required'
+            'description'=>'required',
+            'category_id'=>'required',
+            'amount'=>'required'
         ]);
 
         Transaction::create($request->all());

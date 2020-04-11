@@ -30,11 +30,24 @@ class CreateTransactionTest extends TestCase
      *
      * @return void
      */
-    public function testItCanCreateTransactionsWithoutDescription()
+    public function testCannotCreateTransactionsWithoutDescription()
     {
         $transaction = make('App\Transaction',['description'=>null]);
         $this->withExceptionHandling()->post('/transactions',$transaction->toArray())
              ->assertSessionHasErrors('description');
+
+
+    }
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
+    public function testCannotCreateTransactionsWithoutCategoryId()
+    {
+        $transaction = make('App\Transaction',['category_id'=>null]);
+        $this->withExceptionHandling()->post('/transactions',$transaction->toArray())
+             ->assertSessionHasErrors('category_id');
 
 
     }
