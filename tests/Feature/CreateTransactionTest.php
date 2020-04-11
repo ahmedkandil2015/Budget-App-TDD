@@ -25,4 +25,17 @@ class CreateTransactionTest extends TestCase
             ->assertSee($transaction->description);
 
     }
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
+    public function testItCanCreateTransactionsWithoutDescription()
+    {
+        $transaction = make('App\Transaction',['description'=>null]);
+        $this->withExceptionHandling()->post('/transactions',$transaction->toArray())
+             ->assertSessionHasErrors('description');
+
+
+    }
 }
