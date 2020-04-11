@@ -26,7 +26,7 @@ class CreateTransactionRequest extends FormRequest
         return [
             'description'=>'required',
             'category_id'=>'required',
-            'amount'=>'required'
+            'amount'=>'required|numeric'
         ];
     }
 }
