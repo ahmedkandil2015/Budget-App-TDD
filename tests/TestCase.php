@@ -41,5 +41,15 @@ abstract class TestCase extends BaseTestCase
         $this->post('logout');
         return $this;
     }
-}
+    protected function make($class,$override=[],$time=null){
+        $attributes = ['user_id'=>$this->user->id]+$override;
+        return make($class,$attributes,$time);
+    }
+    protected function create($class,$override=[],$time=null){
+        $attributes = ['user_id'=>$this->user->id]+$override;
+
+        return create($class,$attributes,$time);
+    }
+
+    }
 

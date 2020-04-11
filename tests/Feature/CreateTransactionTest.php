@@ -18,7 +18,7 @@ class CreateTransactionTest extends TestCase
      */
     public function testItCanCreateTransactions()
     {
-        $transaction = make('App\Transaction');
+        $transaction = $this->make('App\Transaction');
         $this->post('/transactions',$transaction->toArray())
             ->assertRedirect('/transactions');
         $this->get('/transactions')

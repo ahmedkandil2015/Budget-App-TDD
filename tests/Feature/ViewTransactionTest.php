@@ -44,7 +44,7 @@ class ViewTransactionTest extends TestCase
      */
     public function testICanDisplayAllTransactions()
     {
-        $transaction=create('App\Transaction');
+        $transaction=$this->create('App\Transaction');
 
         $this->get('/transactions')
             ->assertSee($transaction->description)
@@ -59,8 +59,8 @@ class ViewTransactionTest extends TestCase
     public function testCanFilterTransactionsByCategory()
     {
         $category = create('App\Category');
-        $transactions=create('App\Transaction',['category_id'=>$category->id]);
-        $anotherTransactions=create('App\Transaction');
+        $transactions=$this->create('App\Transaction',['category_id'=>$category->id]);
+        $anotherTransactions=$this->create('App\Transaction');
 
         $this->get('transactions/'.$category->slug)
             ->assertSee($transactions->description)
