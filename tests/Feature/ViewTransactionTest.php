@@ -28,6 +28,20 @@ class ViewTransactionTest extends TestCase
      *
      * @return void
      */
+    public function testICanSeeOnlyTransactionsBelongsToLoginUser()
+    {
+        $otherUserId = create('App\User');
+        $transaction = create('App\Transaction',['user_id'=>$this->user->id]);
+        $OtherTransaction = create('App\Transaction',['user_id'=>$otherUserId->id]);
+        $this->get('transactions')
+        ->assertSee($transaction->description)
+        ->assertDontSee($OtherTransaction->description);
+    }
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
     public function testICanDisplayAllTransactions()
     {
         $transaction=create('App\Transaction');

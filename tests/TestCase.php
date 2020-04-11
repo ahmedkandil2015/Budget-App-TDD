@@ -10,12 +10,12 @@ use Illuminate\Contracts\Debug\ExceptionHandler;
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
-
+    protected $user;
     protected function setUp ()
     {
         parent::setUp();
-        $user = create('App\User');
-        $this->signIn($user)->disableExceptionHandling();
+        $this->user = create('App\User');
+        $this->signIn($this->user)->disableExceptionHandling();
     }
 
     protected function disableExceptionHandling ()

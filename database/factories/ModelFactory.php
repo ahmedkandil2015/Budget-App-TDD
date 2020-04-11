@@ -34,6 +34,9 @@ $factory->define(App\Transaction::class, function (Faker\Generator $faker) {
         'amount' => $faker->randomFloat(),
         'category_id' => function(){
             return factory(App\Category::class)->create()->id;
+        },
+        'user_id'=>function(){
+            return factory(App\User::class)->create()->id;
         }
     ];
 });

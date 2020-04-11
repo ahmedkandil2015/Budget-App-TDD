@@ -18,6 +18,7 @@ class CreateTransactionsTable extends Migration
             $table->text('description');
             $table->integer('category_id');
             $table->float('amount');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
