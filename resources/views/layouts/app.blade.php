@@ -36,17 +36,21 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
+                        @if (!Auth::guest())
+
                         &nbsp; <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 Transactions <span class="caret"></span>
                             </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ route('transactions.list') }}">List</a></li>
+                                    <li><a href="{{ route('transactions.create') }}">Add new Transaction</a></li>
 
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ route('transactions.list') }}">List</a></li>
-                                <li><a href="{{ route('transactions.create') }}">Add new Transaction</a></li>
+                                </ul>
 
-                            </ul>
                         </li>
+                        @endif
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->

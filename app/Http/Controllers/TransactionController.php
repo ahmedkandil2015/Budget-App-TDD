@@ -78,12 +78,14 @@ class TransactionController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
-     * @return Response
+     * @param Transaction $transaction
+     * @return RedirectResponse|Redirector
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Transaction $transaction)
     {
-        //
+        $transaction->update($request->all());
+        return redirect('transactions');
+
     }
 
     /**
