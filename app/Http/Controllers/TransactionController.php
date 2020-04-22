@@ -32,6 +32,11 @@ class TransactionController extends Controller
         return view('transactions.index',compact('transactions'));
     }
 
+    public function create()
+    {
+        $categories=Category::all();
+        return view('transactions.create',compact('categories'));
+    }
 
     /**
      * Store a newly created resource in storage.

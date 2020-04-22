@@ -12,6 +12,7 @@
 */
 
 Route::get('/transactions/{category?}', 'TransactionController@index');
+Route::get('/transaction/create', 'TransactionController@create');
 Route::post('/transactions', 'TransactionController@store');
 Route::get('/', function () {
     return view('welcome');
