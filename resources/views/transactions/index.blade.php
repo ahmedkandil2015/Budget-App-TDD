@@ -34,6 +34,13 @@
                                             <td>{{$transaction->amount}}</td>
                                             <td>
                                                 <a href="{{route('transactions.edit',$transaction->id)}}"><i class="fa fa-edit"></i></a>
+                                                <form action="transactions/{{$transaction->id}}/delete" method="post" style="display: inline-block">
+                                                    {{ csrf_field() }}
+
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button type="submit">save</button>
+                                                    <a href="{{route('transactions.destroy',$transaction->id)}}" type="submit"><i class="fa fa-recycle text-danger"></i></a>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

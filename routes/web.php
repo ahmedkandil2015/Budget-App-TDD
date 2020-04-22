@@ -21,7 +21,8 @@ Route::group(['prefix' => 'transactions'], function (Router $route) {
     $route->get('{category?}', 'TransactionController@index')->name('transactions.list');
     $route->put('{transaction}', 'TransactionController@update')->name('transactions.update');
     $route->get('{transaction}/edit', 'TransactionController@edit')->name('transactions.edit');
-    $route->delete('{transaction}', 'TransactionController@destroy')->name('transactions.destroy');
+    $route->delete('{transaction}/delete', 'TransactionController@destroy')->name('transactions.destroy');
+
 });
 Route::get('/', function () {
     return view('welcome');
