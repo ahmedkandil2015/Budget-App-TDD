@@ -65,4 +65,18 @@ class UpdateTransactionsTest extends TestCase
 
 
     }
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
+    public function testUpdateTransactionWithoutValidAmount()
+    {
+        $transaction=$this->create('App\Transaction');
+        $newTransaction=$this->make('App\Transaction',['amount'=>'sdsdsdsdds']);
+        $this->withExceptionHandling()->put("/transactions/{$transaction->id}",$newTransaction->toArray())
+            ->assertSessionHasErrors('amount');
+
+
+    }
 }
