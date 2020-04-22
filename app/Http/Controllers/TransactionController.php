@@ -6,11 +6,13 @@ use App\Category;
 use App\Http\Requests\CreateTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
 use App\Transaction;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class TransactionController extends Controller
 {
@@ -67,12 +69,13 @@ class TransactionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return Response
+     * @param Transaction $transaction
+     * @return Factory|View
      */
-    public function edit($id)
+    public function edit(Transaction $transaction)
     {
-        //
+        $categories =Category::all();
+        return view('transactions.edit',compact('transaction','categories'));
     }
 
     /**
