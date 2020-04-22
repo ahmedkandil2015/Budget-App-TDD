@@ -10,28 +10,28 @@
                     <div class="panel-body">
                         <form action="/transactions" method="post">
                                 {{csrf_field()}}
-                                <div class="form-group ">
+                                <div class="form-group  {{$errors->has('category_id')?'has-error':''}}">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-md">Category</span>
                                     </div>
                                     <select name="category_id" class="form-control">
                                         @foreach($categories as $category)
-                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                            <option value="{{$category->id}}" {{$category->id==old('category_id')?'selected':''}}>{{$category->name}}</option>
 
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group ">
+                                <div class="form-group {{$errors->has('description')?'has-error':''}}">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-md">Description</span>
                                     </div>
-                                    <input type="text" name='description' class="form-control" >
+                                    <input type="text" name='description'value="{{old('description')}}" class="form-control" >
                                 </div>
-                                <div class="form-group ">
+                                <div class="form-group {{$errors->has('amount')?'has-error':''}}">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroup-sizing-md">Amount</span>
+                                        <span class="input-group-text"  id="inputGroup-sizing-md">Amount</span>
                                     </div>
-                                    <input type="text" name='amount' class="form-control" >
+                                    <input type="text" name='amount'  value="{{old('amount')}}"class="form-control" >
                                 </div>
                             <div>
                                 <button class="btn btn-primary pull-right" type="submit">Create</button>
