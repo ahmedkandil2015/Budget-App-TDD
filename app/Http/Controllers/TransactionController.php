@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
@@ -47,7 +48,7 @@ class TransactionController extends Controller
     public function store(CreateTransactionRequest $request)
     {
 
-        Transaction::create($request->all());
+        Transaction::create($request->all()+['user_id'=>Auth::id()]);
         return redirect('transactions');
     }
 
