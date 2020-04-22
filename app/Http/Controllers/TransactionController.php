@@ -48,7 +48,7 @@ class TransactionController extends Controller
     public function store(CreateTransactionRequest $request)
     {
 
-        Transaction::create($request->all()+['user_id'=>Auth::id()]);
+        Transaction::create($request->all());
         return redirect('transactions');
     }
 
