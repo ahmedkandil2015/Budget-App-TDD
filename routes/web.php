@@ -1,4 +1,7 @@
 <?php
+use Illuminate\Support\Facades\Route;
+use Illuminate\Routing\Router;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -11,11 +14,15 @@
 |
 */
 
-Route::get('/transactions/create', 'TransactionController@create')->name('transactions.create');
-Route::get('/transactions/{category?}', 'TransactionController@index')->name('transactions.list');
-Route::post('/transactions', 'TransactionController@store')->name('transactions.store');
-Route::put('/transactions/{transaction}', 'TransactionController@update')->name('transactions.update');
-Route::get('/transactions/{transaction}/edit', 'TransactionController@edit')->name('transactions.edit');
+Route::group(['prefix' => 'transactions'], function (Router $route) {
+
+    $route->post('/', 'TransactionController@store')->name('transactions.store');
+    $route->get('/create', 'TransactionController@create')->name('transactions.create');
+    $route->get('{category?}', 'TransactionController@index')->name('transactions.list');
+    $route->put('{transaction}', 'TransactionController@update')->name('transactions.update');
+    $route->get('{transaction}/edit', 'TransactionController@edit')->name('transactions.edit');
+    $route->delete('{transaction}', 'TransactionController@destroy')->name('transactions.destroy');
+});
 Route::get('/', function () {
     return view('welcome');
 });

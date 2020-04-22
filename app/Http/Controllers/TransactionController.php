@@ -95,11 +95,12 @@ class TransactionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return Response
+     * @param Transaction $transaction
+     * @return RedirectResponse|Redirector
      */
-    public function destroy($id)
+    public function destroy(Transaction $transaction)
     {
-        //
+        $transaction->delete();
+        return redirect('transactions');
     }
 }
