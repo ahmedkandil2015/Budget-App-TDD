@@ -8,8 +8,10 @@
                     <div class="panel-heading">Create Transaction</div>
 
                     <div class="panel-body">
-                        <form action="/transactions" method="post">
+                        <form action="/transactions/{{$transaction->id}}" method="post">
                                 {{csrf_field()}}
+                            <input type="hidden" name="_method" value="put">
+
                                 <div class="form-group  {{$errors->has('category_id')?'has-error':''}}">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-md">Category</span>
