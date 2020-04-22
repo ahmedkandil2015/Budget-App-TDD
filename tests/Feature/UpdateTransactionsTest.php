@@ -23,4 +23,18 @@ class UpdateTransactionsTest extends TestCase
         $this->get('transactions')
             ->assertSee($newTransaction->description);
     }
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
+    public function testUpdateTransactionWithoutDescription()
+    {
+        $transaction=$this->create('App\Transaction');
+        $newTransaction=$this->make('App\Transaction',['description'=>null]);
+        $this->withExceptionHandling()->put("/transactions/{$transaction->id}",$newTransaction->toArray())
+            ->assertSessionHasErrors('description');
+
+
+    }
 }
