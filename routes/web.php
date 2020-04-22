@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/transactions/create', 'TransactionController@create');
-Route::get('/transactions/{category?}', 'TransactionController@index');
-Route::post('/transactions', 'TransactionController@store');
+Route::get('/transactions/create', 'TransactionController@create')->name('transactions.create');
+Route::get('/transactions/{category?}', 'TransactionController@index')->name('transactions.list');
+Route::post('/transactions', 'TransactionController@store')->name('transactions.store');
 Route::get('/', function () {
     return view('welcome');
 });
