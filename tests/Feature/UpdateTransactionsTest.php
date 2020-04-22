@@ -37,4 +37,32 @@ class UpdateTransactionsTest extends TestCase
 
 
     }
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
+    public function testUpdateTransactionWithoutAmount()
+    {
+        $transaction=$this->create('App\Transaction');
+        $newTransaction=$this->make('App\Transaction',['amount'=>null]);
+        $this->withExceptionHandling()->put("/transactions/{$transaction->id}",$newTransaction->toArray())
+            ->assertSessionHasErrors('amount');
+
+
+    }
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
+    public function testUpdateTransactionWithoutCategoryId()
+    {
+        $transaction=$this->create('App\Transaction');
+        $newTransaction=$this->make('App\Transaction',['category_id'=>null]);
+        $this->withExceptionHandling()->put("/transactions/{$transaction->id}",$newTransaction->toArray())
+            ->assertSessionHasErrors('category_id');
+
+
+    }
 }
