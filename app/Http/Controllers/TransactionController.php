@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Http\Requests\CreateTransactionRequest;
+use App\Http\Requests\UpdateTransactionRequest;
 use App\Transaction;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -77,11 +78,11 @@ class TransactionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param UpdateTransactionRequest $request
      * @param Transaction $transaction
      * @return RedirectResponse|Redirector
      */
-    public function update(Request $request, Transaction $transaction)
+    public function update(UpdateTransactionRequest $request, Transaction $transaction)
     {
         $transaction->update($request->all());
         return redirect('transactions');
