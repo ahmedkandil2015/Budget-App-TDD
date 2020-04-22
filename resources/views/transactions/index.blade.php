@@ -21,6 +21,7 @@
                                     <td>Description</td>
                                     <td>Category</td>
                                     <td>Amount</td>
+                                    <td>Action</td>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -31,6 +32,9 @@
                                             <td>{{$transaction->description}}</td>
                                             <td>{{$transaction->category->name}}</td>
                                             <td>{{$transaction->amount}}</td>
+                                            <td>
+                                                <a href="{{route('transactions.edit',$transaction->id)}}"><i class="fa fa-edit"></i></a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 @endif
